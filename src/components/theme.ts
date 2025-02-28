@@ -1,7 +1,14 @@
 'use client';
 
+import NextImage from 'next/image';
+
+/* MATERIAL UI */
+import { styled } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 
+export const StyledImage = styled(NextImage)({});
+export const StyledH1 = styled('h1')({});
+export const StyledSpan = styled('span')({});
 const theme = createTheme({
   cssVariables: true,
   colorSchemes: {
@@ -54,6 +61,15 @@ const theme = createTheme({
           contrastText: '#690005'
         }
       }
+    }
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280
     }
   },
   typography: {

@@ -7,11 +7,13 @@ import { ThemeProvider } from '@mui/material/styles';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 /* COMPONENTS */
-import theme from '@/components/layout/theme';
+import theme from '@/components/theme';
 
 /* TYPES */
 import type { Metadata } from 'next';
 import type { ComponentWithChildrenReq } from '@/types';
+
+import './globals.css';
 
 const FontDMSans = DM_Sans({
   subsets: ['latin'],
