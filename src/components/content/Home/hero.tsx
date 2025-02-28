@@ -3,7 +3,11 @@
 import React from 'react';
 
 /* COMPONENTS */
-import { StyledH1, StyledImage, StyledSpan } from '@/components/theme';
+import { StyledH1, StyledImage, StyledSpan } from '@/components/themes/styled';
+import {
+  textDisplayLarge,
+  textDisplaySmall
+} from '@/components/themes/utilities';
 
 export default function HomeHero() {
   return (
@@ -41,15 +45,10 @@ export default function HomeHero() {
       <StyledH1
         sx={(theme) => ({
           maxWidth: 'md',
-          fontSize: '3.5em',
           textAlign: 'center',
           fontWeight: 'bold',
-          lineHeight: '60px',
-          letterSpacing: '-1%',
-          [theme.breakpoints.down('sm')]: {
-            fontSize: '1.75em',
-            lineHeight: '30px'
-          }
+          ...textDisplayLarge,
+          [theme.breakpoints.down('sm')]: textDisplaySmall
         })}
       >
         Find&nbsp;

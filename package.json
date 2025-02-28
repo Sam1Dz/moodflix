@@ -3,7 +3,7 @@
   "license": "GPL-3.0-only",
   "private": true,
   "author": "Sam1Dz",
-  "version": "0.1.0",
+  "version": "2025.301",
   "description": "Fork version of 'react-movies' by adrianhajdin. This fork is redesign version using Material UI and running on Next.js framework ",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@mui/material-nextjs": "^6.4.3",
+    "@uidotdev/usehooks": "^2.4.1",
     "next": "^15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

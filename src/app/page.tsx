@@ -4,18 +4,24 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 
 /* COMPONENTS */
-import HomeDecor from '@/components/content/Home/decor';
 import HomeHero from '@/components/content/Home/hero';
+import HomeSearch from '@/components/content/Home/search';
+import HomePopular from '@/components/content/Home/popular';
 
-export default function RootPage() {
+/* TYPES */
+interface RootPageProps {
+  searchParams: Promise<{ query?: string }>;
+}
+
+export default async function RootPage({ searchParams }: RootPageProps) {
+  const query = (await searchParams).query || '';
+
   return (
     <Box component="main">
-      <HomeDecor />
-
       <Container
         maxWidth="lg"
         sx={{
-          mt: 6.5
+          my: 6.5
         }}
       >
         <Box
@@ -27,6 +33,15 @@ export default function RootPage() {
           }}
         >
           <HomeHero />
+          <HomeSearch query={query} />
+        </Box>
+        <Box
+          component="section"
+          sx={{
+            mt: 5
+          }}
+        >
+          <HomePopular />
         </Box>
       </Container>
     </Box>

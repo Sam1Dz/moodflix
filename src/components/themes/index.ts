@@ -1,14 +1,7 @@
 'use client';
 
-import NextImage from 'next/image';
-
-/* MATERIAL UI */
-import { styled } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 
-export const StyledImage = styled(NextImage)({});
-export const StyledH1 = styled('h1')({});
-export const StyledSpan = styled('span')({});
 const theme = createTheme({
   cssVariables: true,
   colorSchemes: {
