@@ -59,7 +59,11 @@ export default function UIMovieCard({ movie }: UIMovieCardProps) {
         <CardMedia
           component="img"
           height="368"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : '/images/no-movie.png'
+          }
           alt={movie.title}
           sx={{ borderRadius: 3 }}
         />

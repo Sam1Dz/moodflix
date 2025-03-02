@@ -43,6 +43,7 @@ export default function HomeSearch() {
       setSearchQuery(query || '');
     } else {
       const params = new URLSearchParams(searchParams.toString());
+      params.delete('page');
 
       if (debouncedSearchTerm !== '') {
         params.set('query', debouncedSearchTerm);

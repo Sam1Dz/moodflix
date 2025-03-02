@@ -57,7 +57,7 @@ export default async function RootPage({ searchParams }: RootPageProps) {
             </HydrationBoundary>
           ) : (
             <HydrationBoundary state={dehydrate(queryClientSearch)}>
-              <HomeMovies page={page} query={query} />
+              <HomeMovies page={page} />
             </HydrationBoundary>
           )}
         </Box>
