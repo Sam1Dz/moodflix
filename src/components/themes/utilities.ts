@@ -24,6 +24,11 @@ export const textTitleLarge: React.CSSProperties = {
 };
 export const textTitleMedium: React.CSSProperties = {
   fontSize: 16,
-  letterSpacing: 0.15,
+  letterSpacing: '0.15px',
+  lineHeight: '24px'
+};
+export const textBodyLarge: React.CSSProperties = {
+  fontSize: 16,
+  letterSpacing: '0.5px',
   lineHeight: '24px'
 };

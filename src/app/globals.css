@@ -1,6 +1,11 @@
 :root {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --my-surf-container-highest: #e4e1e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --my-surf-container-highest: #35343a;
+  }
 }
 
 a,
@@ -12,4 +17,9 @@ h3,
 p,
 span {
   all: unset;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

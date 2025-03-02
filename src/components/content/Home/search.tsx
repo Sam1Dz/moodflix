@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { useDebounce } from '@uidotdev/usehooks';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 /* MATERIAL UI */
 import { styled } from '@mui/material/styles';
-import { alpha, InputBase } from '@mui/material';
+import { InputBase } from '@mui/material';
 // Icons
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -14,12 +14,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { StyledForm } from '@/components/themes/styled';
 import { textTitleLarge, textTitleMedium } from '@/components/themes/utilities';
 
-/* TYPES */
-interface HomeSearchProps {
-  query?: string;
-}
-
-export const SearchInput = styled(InputBase)(({ theme }) => ({
+export const SearchInput = styled(InputBase)({
   flex: '1 1 0%',
   width: '100%',
   height: 'auto',
@@ -27,37 +22,39 @@ export const SearchInput = styled(InputBase)(({ theme }) => ({
   fontSize: 'inherit',
   input: {
     '&::placeholder': {
-      color: theme.palette.text.secondary,
+      color: 'var(--mui-palette-text-secondary)',
       opacity: 1
     }
   }
-}));
+});
 
-export default function HomeSearch({ query }: HomeSearchProps) {
+export default function HomeSearch() {
+  const Router = useRouter();
   const searchParams = useSearchParams();
+  const query = searchParams.get('query') || '';
 
-  const [init, setInit] = React.useState(false);
+  const init = React.useRef(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const debouncedSearchTerm = useDebounce(searchQuery, 500);
 
   React.useEffect(() => {
-    if (!init) {
-      setInit(true);
+    if (!init.current) {
+      init.current = true;
       setSearchQuery(query || '');
     } else {
       const params = new URLSearchParams(searchParams.toString());
 
       if (debouncedSearchTerm !== '') {
         params.set('query', debouncedSearchTerm);
-        window.history.replaceState(null, '', `?${params.toString()}`);
+        Router.replace(`?${params.toString()}`, { scroll: false });
       } else {
         params.delete('query');
-        window.history.replaceState(null, '', '?');
+        Router.replace('?', { scroll: false });
       }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedSearchTerm, searchParams, init]);
+  }, [debouncedSearchTerm]);
 
   return (
     <StyledForm
@@ -72,7 +69,7 @@ export default function HomeSearch({ query }: HomeSearchProps) {
         maxWidth: 'md',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: alpha(theme.palette.primary.main, 0.125),
+        backgroundColor: 'rgba(var(--mui-palette-primary-mainChannel) / 0.125)',
         ...textTitleLarge,
         [theme.breakpoints.down('sm')]: {
           minHeight: 56,

@@ -2,11 +2,23 @@
 
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxs: true;
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+  }
+}
+
 const theme = createTheme({
   cssVariables: true,
   colorSchemes: {
     light: {
       palette: {
+        divider: '#c7c5d0',
         background: {
           default: '#fbf8ff',
           paper: '#f5f2fa'
@@ -32,6 +44,7 @@ const theme = createTheme({
     },
     dark: {
       palette: {
+        divider: '#46464f',
         background: {
           default: '#131318',
           paper: '#1b1b21'
@@ -58,7 +71,8 @@ const theme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
+      xxs: 0,
+      xs: 400,
       sm: 640,
       md: 768,
       lg: 1024,
