@@ -1,12 +1,17 @@
 'use client';
 
 import React from 'react';
+import NextLink from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 /* REACT QUERY */
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 /* MATERIAL UI */
+import { styled } from '@mui/material/styles';
 import { Box, IconButton, Grid2 as Grid } from '@mui/material';
+// Icons
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
 
 /* COMPONENTS */
 import UIMovieCard from '@/components/ui/movie-card';
@@ -18,9 +23,6 @@ import {
 
 /* LIBRARIES */
 import { MoviesByPopularity, SearchMovies } from '@/libs/fetcher';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 /* TYPES */
 interface HomePopularProps {
@@ -62,6 +64,8 @@ export default function HomePopular({ page }: HomePopularProps) {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
     Router.replace(`?${params.toString()}`, { scroll: false });
   };
+  const titleToLink = (value: string) =>
+    value.toLowerCase().replaceAll(' ', '-');
 
   return (
     <React.Fragment>
@@ -91,7 +95,9 @@ export default function HomePopular({ page }: HomePopularProps) {
               lg: 2.4
             }}
           >
-            <UIMovieCard movie={movie} />
+            <NextLink href={`/${movie.id}/${titleToLink(movie.title)}`}>
+              <UIMovieCard movie={movie} />
+            </NextLink>
           </Grid>
         ))}
       </Grid>

@@ -40,7 +40,7 @@ export default function HomeSearch() {
   React.useEffect(() => {
     if (!init.current) {
       init.current = true;
-      setSearchQuery(query || '');
+      setSearchQuery(query);
     } else {
       const params = new URLSearchParams(searchParams.toString());
       params.delete('page');
@@ -89,7 +89,7 @@ export default function HomeSearch() {
       <SearchInput
         name="query"
         placeholder="Search through thousands of movies"
-        value={searchQuery}
+        defaultValue={query}
         onChange={(event) => setSearchQuery(event.target.value)}
       />
     </StyledForm>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { queryOptions } from '@tanstack/react-query';
-import { GetMovies } from '@/types';
+
+/* TYPES */
+import type { GetMovies, MovieDetail } from '@/types';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -29,6 +31,16 @@ export const SearchMovies = (query: string, page: number) =>
     queryFn: async () => {
       const response = await Fetcher<GetMovies>(
         `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}&page=${page}`
+      );
+      return response.data;
+    }
+  });
+export const DetailMovie = (movieId: number) =>
+  queryOptions({
+    queryKey: ['moviesByPopularity', movieId],
+    queryFn: async () => {
+      const response = await Fetcher<MovieDetail>(
+        `${API_BASE_URL}/movie/${movieId}`
       );
       return response.data;
     }

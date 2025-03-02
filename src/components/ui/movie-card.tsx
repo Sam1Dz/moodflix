@@ -6,7 +6,6 @@ import React from 'react';
 import {
   Card,
   Stack,
-  Skeleton,
   CardMedia,
   CardContent,
   CardActionArea
@@ -15,7 +14,8 @@ import {
 import StarRateIcon from '@mui/icons-material/StarRate';
 
 /* COMPONENTS */
-import { StyledH3, StyledP, StyledSpan } from '@/components/themes/styled';
+import DotDivider from '@/components/ui/dot-divider';
+import { StyledH3, StyledP } from '@/components/themes/styled';
 import { textBodyLarge, textTitleMedium } from '@/components/themes/utilities';
 
 /* TYPES */
@@ -25,25 +25,10 @@ interface UIMovieCardProps {
   movie: BaseMovie;
 }
 
-export function UIMovieCardSkeleton() {
-  return (
-    <Skeleton
-      variant="rounded"
-      animation="wave"
-      sx={{ height: 444, borderRadius: 3 }}
-    />
-  );
-}
-
 export default function UIMovieCard({ movie }: UIMovieCardProps) {
-  const Divider = () => (
-    <StyledSpan
-      sx={{ color: 'var(--mui-palette-text-secondary)' }}
-      aria-hidden="true"
-    >
-      •
-    </StyledSpan>
-  );
+  const releaseDate = movie.release_date
+    ? movie.release_date.split('-')[0]
+    : null;
 
   return (
     <Card
@@ -105,7 +90,7 @@ export default function UIMovieCard({ movie }: UIMovieCardProps) {
               </StyledP>
             </Stack>
 
-            <Divider />
+            <DotDivider />
             <StyledP
               sx={{
                 fontWeight: 500,
@@ -118,16 +103,16 @@ export default function UIMovieCard({ movie }: UIMovieCardProps) {
               {movie.original_language}
             </StyledP>
 
-            <Divider />
+            <DotDivider />
             <StyledP
               sx={{
                 fontWeight: 500,
                 color: 'var(--mui-palette-text-secondary)',
                 ...textBodyLarge
               }}
-              aria-label={`Movie release year: ${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}`}
+              aria-label={`Movie release year: ${releaseDate}`}
             >
-              {movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}
+              {releaseDate}
             </StyledP>
           </Stack>
         </CardContent>

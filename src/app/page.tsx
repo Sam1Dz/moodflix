@@ -20,7 +20,7 @@ interface RootPageProps {
   searchParams: Promise<{ query?: string; page?: string }>;
 }
 
-export default async function RootPage({ searchParams }: RootPageProps) {
+export default async function HomePage({ searchParams }: RootPageProps) {
   const query = (await searchParams).query || '';
   const page = Number((await searchParams).page) || 1;
 
