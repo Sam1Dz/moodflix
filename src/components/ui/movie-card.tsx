@@ -3,19 +3,13 @@
 import React from 'react';
 
 /* MATERIAL UI */
-import {
-  Card,
-  Stack,
-  CardMedia,
-  CardContent,
-  CardActionArea
-} from '@mui/material';
+import { Card, Stack, CardContent, CardActionArea, Box } from '@mui/material';
 // Icon
 import StarRateIcon from '@mui/icons-material/StarRate';
 
 /* COMPONENTS */
 import DotDivider from '@/components/ui/dot-divider';
-import { StyledH3, StyledP } from '@/components/themes/styled';
+import { StyledH3, StyledImage, StyledP } from '@/components/themes/styled';
 import { textBodyLarge, textTitleMedium } from '@/components/themes/utilities';
 
 /* TYPES */
@@ -41,17 +35,20 @@ export default function UIMovieCard({ movie }: UIMovieCardProps) {
       aria-label={`Movie card for ${movie.title}`}
     >
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="368"
-          src={
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-              : '/images/no-movie.png'
-          }
-          alt={movie.title}
-          sx={{ borderRadius: 3 }}
-        />
+        <Box component="div" sx={{ height: 368, position: 'relative' }}>
+          <StyledImage
+            fill
+            unoptimized
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : '/images/no-movie.png'
+            }
+            alt={movie.title}
+            sx={{ borderRadius: 3 }}
+          />
+        </Box>
+
         <CardContent
           sx={{
             p: 1.5

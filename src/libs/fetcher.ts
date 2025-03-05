@@ -34,5 +34,7 @@ export const SearchMovies = async (query: string, page: number) => {
   );
 };
 export const GetMovieDetail = async (movieId: string) => {
-  return await Fetcher<MovieDetail>(`${API_BASE_URL}/movie/${movieId}`);
+  return await Fetcher<MovieDetail>(`${API_BASE_URL}/movie/${movieId}`, {
+    next: { revalidate: 3600 }
+  });
 };

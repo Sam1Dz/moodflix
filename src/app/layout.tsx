@@ -32,7 +32,31 @@ const FontBebasNeue = Bebas_Neue({
 
 export const metadata: Metadata = {
   title: 'Moodflix',
-  description: "Find Movies You'll Enjoy Without the Hassle"
+  description: "Find Movies You'll Enjoy Without the Hassle",
+  openGraph: {
+    title: 'Moodflix',
+    description: "Find Movies You'll Enjoy Without the Hassle",
+    images: {
+      url: '/images/logo.png',
+      width: 91,
+      height: 66
+    },
+    type: 'website',
+    siteName: 'Moodflix'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Moodflix',
+    description: "Find Movies You'll Enjoy Without the Hassle",
+    images: '/images/logo.png'
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
+  other: {
+    'theme-color': '#565992'
+  }
 };
 
 export default function RootLayout({ children }: ComponentWithChildrenReq) {

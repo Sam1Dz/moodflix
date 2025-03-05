@@ -25,6 +25,9 @@ import {
   textTitleLarge
 } from '@/components/themes/utilities';
 
+/* HELPERS */
+import TitleToLink from '@/helpers/title-to-link';
+
 /* TYPES */
 import { GetMovies } from '@/types';
 
@@ -33,7 +36,6 @@ interface HomeMoviesProps {
   isError?: boolean;
 }
 
-const titleToLink = (value: string) => value.toLowerCase().replaceAll(' ', '-');
 const PaginationButton = styled(IconButton)({
   backgroundColor: 'var(--mui-palette-primary-main)',
   color: 'var(--mui-palette-primary-contrastText)',
@@ -96,7 +98,7 @@ export default function HomeMovies({ data, isError }: HomeMoviesProps) {
                     lg: 2.4
                   }}
                 >
-                  <NextLink href={`/${movie.id}/${titleToLink(movie.title)}`}>
+                  <NextLink href={`/${movie.id}/${TitleToLink(movie.title)}`}>
                     <UIMovieCard movie={movie} />
                   </NextLink>
                 </Grid>
