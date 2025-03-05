@@ -32,7 +32,7 @@ import {
 /* TYPES */
 import { MovieDetail } from '@/types';
 
-interface DetailHeaderProps {
+interface DetailHeroProps {
   title: MovieDetail['title'];
   overview: MovieDetail['overview'];
   vote_count: MovieDetail['vote_count'];
@@ -43,7 +43,7 @@ interface DetailHeaderProps {
   original_title: MovieDetail['original_title'];
 }
 
-export default function DetailHeader({
+export default function DetailHero({
   title,
   overview,
   vote_count,
@@ -52,7 +52,7 @@ export default function DetailHeader({
   vote_average,
   backdrop_path,
   original_title
-}: DetailHeaderProps) {
+}: DetailHeroProps) {
   const { mode, systemMode } = useColorScheme();
   const colorScheme = systemMode || mode;
 
@@ -150,6 +150,7 @@ export default function DetailHeader({
                 fontSize: 22,
                 [theme.breakpoints.down('sm')]: { fontSize: 16 }
               })}
+              aria-label={`Rated ${voteAverage} out of 10`}
             />
             <StyledP
               sx={(theme) => ({
@@ -168,7 +169,7 @@ export default function DetailHeader({
   };
 
   return (
-    <Box component="header">
+    <Box component="header" aria-label="Movie detail header">
       <Box
         component="div"
         sx={(theme) => ({
@@ -182,6 +183,7 @@ export default function DetailHeader({
             minHeight: 'calc(27* var(--mui-spacing))'
           }
         })}
+        aria-hidden="true"
       >
         <Box
           component="div"
@@ -192,6 +194,7 @@ export default function DetailHeader({
               backgroundImage: `linear-gradient(to right, rgba(${dynamicColor} / 1) 20%, rgba(${dynamicColor} / ${lighterColor && darkerColor ? '0' : '1'}) 50%)`
             }
           })}
+          aria-hidden="true"
         >
           <Container maxWidth="xl" sx={{ py: 2 }}>
             <Box
@@ -213,7 +216,7 @@ export default function DetailHeader({
                     ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${poster_path}`
                     : '/images/no-movie.png'
                 }
-                alt={title}
+                alt={`${title} movie poster`}
                 height={900}
                 width={600}
                 sx={(theme) => ({

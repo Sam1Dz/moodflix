@@ -19,6 +19,7 @@ export default function HomeDecor() {
           height: 'calc(556px - 56px)'
         }
       })}
+      aria-hidden="true"
     />
   );
 }

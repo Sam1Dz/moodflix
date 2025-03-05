@@ -19,10 +19,10 @@ import { StyledH3, StyledP } from '@/components/themes/styled';
 import { textBodyLarge, textTitleMedium } from '@/components/themes/utilities';
 
 /* TYPES */
-import type { BaseMovie } from '@/types';
+import type { Movies } from '@/types';
 
 interface UIMovieCardProps {
-  movie: BaseMovie;
+  movie: Movies;
 }
 
 export default function UIMovieCard({ movie }: UIMovieCardProps) {

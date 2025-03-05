@@ -5,12 +5,11 @@ export type ComponentWithChildrenReq<T = object> = T &
     children: React.ReactNode;
   }>;
 
-interface BaseResponse {
-  page: number;
-  total_pages: number;
-  total_results: number;
-}
-export interface BaseMovie {
+export type FetchResponses<T> = Omit<Response, 'json'> & {
+  json: () => Promise<T>;
+};
+
+export interface Movies {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -26,7 +25,7 @@ export interface BaseMovie {
   vote_average: number;
   vote_count: number;
 }
-export type MovieDetail = Omit<BaseMovie, 'genre_ids'> & {
+export type MovieDetail = Omit<Movies, 'genre_ids'> & {
   belongs_to_collection: {
     id: number;
     name: string;
@@ -63,6 +62,9 @@ export type MovieDetail = Omit<BaseMovie, 'genre_ids'> & {
 };
 
 /* RESPONSE API TYPE */
-export interface GetMovies extends BaseResponse {
-  results: BaseMovie[];
+export interface GetMovies {
+  results: Movies[];
+  page: number;
+  total_pages: number;
+  total_results: number;
 }

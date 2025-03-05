@@ -15,7 +15,7 @@ export default function HomeHero() {
       <StyledImage
         priority
         src="/images/logo.png"
-        alt="Logo"
+        alt="Moodflix Logo"
         width={91}
         height={66}
         sx={(theme) => ({
@@ -30,7 +30,7 @@ export default function HomeHero() {
       <StyledImage
         priority
         src="/images/hero.png"
-        alt="Logo"
+        alt="Collage of popular movie posters."
         width={473}
         height={440}
         sx={(theme) => ({

@@ -1,9 +1,14 @@
 import React from 'react';
 import { DM_Sans, Bebas_Neue } from 'next/font/google';
 
+/* MATERIAL UI */
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+
 /* COMPONENTS */
-import ReactQueryProvider from '@/components/providers/react-query';
-import MuiMaterialProvider from '@/components/providers/mui-material';
+import theme from '@/components/themes';
+import TopLoader from '@/components/ui/top-loader';
 
 /* TYPES */
 import type { Metadata } from 'next';
@@ -34,9 +39,13 @@ export default function RootLayout({ children }: ComponentWithChildrenReq) {
   return (
     <html lang="en">
       <body className={`${FontDMSans.variable} ${FontBebasNeue.variable}`}>
-        <ReactQueryProvider>
-          <MuiMaterialProvider>{children}</MuiMaterialProvider>
-        </ReactQueryProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme} defaultMode="system">
+            <TopLoader />
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

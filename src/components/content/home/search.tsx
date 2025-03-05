@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useDebounce } from '@uidotdev/usehooks';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'nextjs-toploader/app';
+import { useSearchParams } from 'next/navigation';
 
 /* MATERIAL UI */
 import { styled } from '@mui/material/styles';
@@ -37,11 +38,11 @@ export default function HomeSearch() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const debouncedSearchTerm = useDebounce(searchQuery, 500);
 
-  React.useEffect(() => {
-    if (!init.current) {
-      init.current = true;
-      setSearchQuery(query);
-    } else {
+  // Component Function
+  const handleAction = React.useCallback(
+    (event?: React.FormEvent<HTMLFormElement>) => {
+      if (event) event.preventDefault();
+
       const params = new URLSearchParams(searchParams.toString());
       params.delete('page');
 
@@ -52,6 +53,16 @@ export default function HomeSearch() {
         params.delete('query');
         Router.replace('?', { scroll: false });
       }
+    },
+    [Router, debouncedSearchTerm, searchParams]
+  );
+
+  React.useEffect(() => {
+    if (!init.current) {
+      init.current = true;
+      setSearchQuery(query);
+    } else {
+      handleAction();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,6 +70,7 @@ export default function HomeSearch() {
 
   return (
     <StyledForm
+      onSubmit={handleAction}
       sx={(theme) => ({
         mt: 4,
         px: 2.5,
@@ -77,6 +89,8 @@ export default function HomeSearch() {
           ...textTitleMedium
         }
       })}
+      role="search"
+      aria-label="Movie search form"
     >
       <SearchIcon
         sx={(theme) => ({
@@ -85,12 +99,14 @@ export default function HomeSearch() {
             fontSize: 24
           }
         })}
+        aria-hidden="true"
       />
       <SearchInput
         name="query"
         placeholder="Search through thousands of movies"
         defaultValue={query}
         onChange={(event) => setSearchQuery(event.target.value)}
+        aria-label="Enter movie title to search"
       />
     </StyledForm>
   );

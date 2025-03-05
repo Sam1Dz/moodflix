@@ -1,11 +1,20 @@
 :root {
   --theme-colorChannel: 19 22 137;
 
+  --my-primary-container: #e0e0ff;
+  --my-primary-on-container: #3e4278;
+  --my-error-container: #ffdad6;
+  --my-error-on-container: #93000a;
+
   --my-surf-container-highest: #e4e1e9;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --my-primary-container: #3e4278;
+    --my-primary-on-container: #e0e0ff;
+    --my-error-container: #93000a;
+    --my-error-on-container: #ffdad6;
     --my-surf-container-highest: #35343a;
   }
 }

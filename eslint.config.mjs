@@ -1,7 +1,6 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier/recommended';
-import pluginQuery from '@tanstack/eslint-plugin-query';
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -23,9 +22,6 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
-    plugins: {
-      '@tanstack/query': pluginQuery
-    },
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn'
     }

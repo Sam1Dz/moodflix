@@ -1,27 +1,22 @@
 'use client';
 
-import React from 'react';
-
-/* REACT QUERY */
-import { useSuspenseQuery } from '@tanstack/react-query';
+/* MATERIAL UI */
+import { Box } from '@mui/material';
 
 /* COMPONENTS */
-import DetailHeader from './header';
+import DetailHero from './hero';
 
-/* LIBRARIES */
-import { DetailMovie } from '@/libs/fetcher';
+/* TYPES */
+import { MovieDetail } from '@/types';
 
 interface DetailContentProps {
-  movieId: string;
+  data: MovieDetail;
 }
 
-export default function DetailContent({ movieId }: DetailContentProps) {
-  // Fetch API
-  const { data } = useSuspenseQuery(DetailMovie(Number(movieId)));
-
+export default function DetailContent({ data }: DetailContentProps) {
   return (
-    <React.Fragment>
-      <DetailHeader
+    <Box component="main" aria-label="Movie detail content">
+      <DetailHero
         title={data.title}
         overview={data.overview}
         vote_count={data.vote_count}
@@ -31,6 +26,6 @@ export default function DetailContent({ movieId }: DetailContentProps) {
         backdrop_path={data.backdrop_path}
         original_title={data.original_title}
       />
-    </React.Fragment>
+    </Box>
   );
 }
